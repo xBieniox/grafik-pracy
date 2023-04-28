@@ -1,0 +1,134 @@
+body {
+  margin: 0;
+  background-color: #35363a;
+  color: #fafafa;
+  font-family: "Lobster", sans-serif;
+  font-size: 18px;
+  text-align: center;
+}
+
+#board
+{
+  background-color: #787a80;
+  justify-content: center;
+  margin: auto;
+  height: 540px;
+  width: 1200px;
+}
+
+#monthname
+{
+  width: 100px;
+}
+
+a:link {
+  color: #fafafa;
+  text-decoration: none;
+}
+a:visited {
+	color: #fafafa;
+}
+a:active {
+	color: #fafafa;}
+a:hover {
+  color: #e9b64a;
+}
+
+h1 {
+  font-size: 64px;
+  font-weight: 200;
+  text-align: center;
+  letter-spacing: 5px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  color: #902936;
+}
+.blad
+{
+  background-color: rgb(92, 50, 170);
+  margin: 0px;
+  width: 30px;
+  height: 40px;
+  cursor: cell;
+  border-bottom: 1px solid #dadada;
+}
+
+.blad2
+{
+  background-color: rgb(255, 168, 55);
+  margin: 0px;
+  width: 30px;
+  height: 40px;
+  cursor: cell;
+  border-bottom: 1px solid #dadada;
+}
+
+.days
+{
+  border: 1px solid #e9b64a;
+  margin: 0px;
+  width: 30px;
+  height: 40px;
+}
+
+.weekendchanges
+{
+  border: 1px solid #e9b64a;
+  margin: 0px;
+  width: 30px;
+  height: 40px;
+  background-color: rgb(197, 195, 70);
+}
+.urlop
+{
+  background-color: plum;
+}
+
+
+
+
+.changes
+{
+  margin: 0px;
+  width: 30px;
+  height: 40px;
+}
+
+table, th, td
+{
+  border-collapse: collapse;
+}
+
+.dniowka, .nocka, .changes, .urlop, .check , .weekendchanges
+{
+  border: 1px solid #dadada;
+  cursor: pointer;
+  color: black;
+  font-weight: 400;
+}
+
+
+.check
+{
+  background-color: rgb(170, 22, 22);
+  margin: 0px;
+  width: 30px;
+  height: 40px;
+  cursor: cell;
+}
+
+.cor
+{
+  background-color: rgb(24, 201, 92);
+  margin: 0px;
+  width: 30px;
+  height: 40px;
+  cursor: cell;
+}
+
+.box
+{
+  cursor: pointer;
+  border: 1px solid #dadada;
+  border-collapse: collapse;
+}

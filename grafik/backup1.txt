@@ -1,0 +1,264 @@
+const dnitygodnia = ["Pon", "Wto", "Śro", "Czw", "Pią", "Sob", "Nie"];
+const miesiace = [
+  "styczeń",
+  "luty",
+  "marzec",
+  "kwiecień",
+  "maj",
+  "czerwiec",
+  "lipiec",
+  "sierpień",
+  "wrzesień",
+  "październik",
+  "listopad",
+  "grudzień",
+];
+var date = new Date();
+var firstday = new Date(date.getFullYear(), date.getMonth(), 1);
+var lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+var zer = 0;
+console.log(dnitygodnia[lastday.getDay() - 1]);
+console.log(miesiace[firstday.getMonth()]);
+
+var days = lastday.getDate();
+var changes = days * 2;
+let dni = [];
+
+class pracownik {
+  constructor(name, nr) {
+    this.name = name;
+    this.godziny = 0;
+    this.dni = [];
+    this.blad="";
+    for (let i = 0; i < 30; i++) {
+      this.dni[i] = "W";
+      this.nr = nr;
+    }
+  }
+
+  checking(dzien, ajdi, nr) {
+    if (this.dni[dzien] != "W") {
+      $(z[ajdi]).html(this.dni[dzien]);
+    } else {
+      $(z[ajdi]).html("");
+    }
+
+    // this.dni.every((val, index , array) => {
+    // if(val=="D" && array[index-1] =="N" )
+    // {
+    // return false;
+    //}
+
+    //})
+
+    for (var i = 0; i < this.dni.length; i++) {
+      var d = 0;
+      var n = 0;
+      if (
+        this.dni[i] != "W" &&
+        this.dni[i - 1] != "W" &&
+        this.dni[i - 2] != "W"
+      ) {
+        this.blad="blad2";
+        $("#dzien" + i).removeClass("check");
+        $("#dzien" + i).removeClass("cor");
+        $("#dzien" + i).addClass("blad2");
+
+        $("#dzien" + (i - 1)).removeClass("check");
+        $("#dzien" + (i - 1)).removeClass("cor");
+        $("#dzien" + (i - 1)).addClass("blad2");
+
+        $("#dzien" + (i - 2)).removeClass("check");
+        $("#dzien" + (i - 2)).removeClass("cor");
+        $("#dzien" + (i - 2)).addClass("blad2");
+      } else {
+        $("#dzien" + i).removeClass("blad");
+
+        $("#dzien" + i).removeClass("cor");
+      }
+
+      if (this.dni[i] == "D" && this.dni[i - 1] == "N") {
+        this.blad="blad";
+        $("#dzien" + i).removeClass("blad2");
+        $("#dzien" + i).removeClass("check");
+        $("#dzien" + i).removeClass("cor");
+        $("#dzien" + i).addClass("blad");
+
+        $("#dzien" + (i - 1)).removeClass("blad2");
+        $("#dzien" + (i - 1)).removeClass("cor");
+        $("#dzien" + (i - 1)).removeClass("check");
+        $("#dzien" + (i - 1)).addClass("blad");
+      } else {
+        $("#dzien" + i).removeClass("blad2");
+        $("#dzien" + i).addClass("check");
+      }
+      for (var j = 0; j < workers.length; j++) {
+        if (workers[j].dni[i] == "N") {
+          n++;
+        } else if (workers[j].dni[i] == "D") {
+          d++;
+        }
+
+        if (d == 2 && n == 2) {
+          $("#dzien" + i).removeClass("check");
+          $("#dzien" + i).addClass("cor");
+        }
+      }
+    }
+  }
+}
+
+let workers = [
+  "Bartek",
+  "Aneta",
+  "Rafał",
+  "Karolina",
+  "Natalia",
+  "Dorota",
+  "Sylwia",
+  "Jerzy",
+  "Kinga",
+];
+
+var tabled = [workers.length];
+for (let i = 0; i < workers.length; i++) {
+  workers[i] = new pracownik(workers[i], i);
+}
+
+let z = [];
+
+window.onload = table;
+
+function table() {
+  var generator = "<table><tr><th colspan='2'> </th>";
+
+  for (let j = 0; j < days; j++) {
+    generator += "<td id='daytyg" + j + "'class='days' colspan='1'></td>";
+  }
+
+  generator += "</tr>";
+
+  generator += "<tr><th colspan='2'> </th>";
+
+  for (let i = 0; i < days; i++) {
+    dni[i] = [];
+    dni[i][0] = i;
+    dni[i][1] = 0;
+    dni[i][2] = 0;
+
+    generator +=
+      "<td id='day" + i + "'class='days' colspan='1'>" + (i + 1) + "</td>";
+  }
+
+  generator += "</tr>";
+
+  for (let i = 0; i < workers.length; i++) {
+    generator +=
+      "<tr> <th class='days' colspan='2'>" + workers[i].name + "</th>";
+
+    for (let j = 0; j < days; j++) {
+      generator += "<td id='prac" + i + "dzien" + j + "'class='changes'></td>";
+
+      if (j == days - 1) {
+        generator += "<td id='prach" + i + "'class='changes'>0</td>";
+      }
+    }
+
+    generator += "</tr>";
+  }
+  generator += "<tr> <th colspan='2'></th>";
+
+  for (let j = 0; j < days; j++) {
+    generator += "<td id='dzien" + j + "'class='check'></td>";
+  }
+
+  generator += "</tr></table>";
+
+  $("#board").html(generator);
+
+  for (let i = 0; i < workers.length; i++) {
+    for (let j = 0; j < days; j++) {
+      z[days * i + j] = document.getElementById("prac" + i + "dzien" + j);
+
+      z[days * i + j].addEventListener("click", function () {
+        praca(i, j);
+      });
+
+      z[days * i + j].addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+        urlop(i, j);
+      });
+    }
+  }
+
+  do {
+    $("#daytyg" + zer).html(dnitygodnia[firstday.getDay() - 1 + (zer % 7)]);
+    zer++;
+  } while (zer != days);
+
+  for (let j = 0; j < workers.length; j++) {
+    for (let i = 0; i < days; i++) {
+      if (
+        dnitygodnia[firstday.getDay() - 1 + (i % 7)] == "Sob" ||
+        dnitygodnia[firstday.getDay() - 1 + (i % 7)] == "Nie"
+      ) {
+        $("#prac" + j + "dzien" + i).addClass("weekendchanges");
+        $("#prac" + j + "dzien" + i).removeClass("changes");
+        $("#day" + i).addClass("weekendchanges");
+        $("#day" + i).removeClass("changes");
+      }
+    }
+  }
+}
+
+function refiling() {
+  const changesperday = 2;
+  const peopleperchange = 2;
+  const peopleperday = 4;
+  const maxdayinrow = 2;
+  let currentworker = Math.floor(Math.random() * workers.length);
+}
+
+function praca(nr, dzien) {
+  let ajdi = days * nr + dzien;
+
+  if (workers[nr].dni[dzien] == "W") {
+    workers[nr].dni[dzien] = "D";
+    workers[nr].godziny += 12;
+    $("#prach" + nr).html(workers[nr].godziny);
+    workers[nr].checking(dzien, ajdi, nr);
+  } else {
+    if (workers[nr].dni[dzien] == "U") {
+      return 0;
+    }
+
+    if (workers[nr].dni[dzien] == "D") {
+      workers[nr].dni[dzien] = "N";
+      workers[nr].checking(dzien, ajdi, nr);
+    } else {
+      workers[nr].dni[dzien] = "W";
+      workers[nr].godziny -= 12;
+      $("#prach" + nr).html(workers[nr].godziny);
+      workers[nr].checking(dzien, ajdi, nr);
+    }
+  }
+}
+
+function urlop(prac, dzien) {
+  var ajdi = days * prac + dzien;
+
+  if (workers[prac].dni[dzien] == "W") {
+    $(z[ajdi]).addClass("urlop");
+    workers[prac].dni[dzien] = "U";
+  } else {
+    if (workers[prac].dni[dzien] == "U") {
+      workers[prac].dni[dzien] = "W";
+
+      $(z[ajdi]).removeClass("urlop");
+      z[days * prac + dzien].addEventListener("click", function () {
+        praca(prac, dzien);
+      });
+    }
+  }
+}
+backup1

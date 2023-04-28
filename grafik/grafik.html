@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+	<meta charset="utf-8">
+	<title>Pole Minowe</title>
+	<meta name="keywords" content="javascript, jQuery, game, gwent, memory">
+	<meta name="author" content="BB">
+	
+	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
+	
+	<link rel="stylesheet" href="grafmain.css">
+
+
+	<link href="https://fonts.googleapis.com/css2?family=Rubik+Beastly&display=swap" rel="stylesheet">
+
+	
+	
+	<!--[if lt IE 9]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+
+	<header>
+	
+		<h1>Grafik pracy</h1>
+		
+	
+	</header>
+	
+	<main>
+		<table class="menubox"><tr>
+			<td class="box" onclick="prevmonth()"><</td>
+			<th class="box" id="monthname" colspan="3"></th>
+			<td class="box" onclick="nextmonth()">></td>
+		</tr></table>
+	<div id="board">
+
+	</div>
+		<div class="menubox">
+			<button onclick="refiling()">Generuj</button>
+		</div>
+
+		
+	
+	</main>
+	
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="grafkod.js"></script>
+	
+</body>
+</html>
